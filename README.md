@@ -1,9 +1,6 @@
 # IIT-A2 MON IIT #3
 
 ## Members
-Aryan . - s3891393
-
-
 Daniel Nguyen - s3953534
 
 
