@@ -15,6 +15,8 @@ Praniv Singh Basnet - s3840254
 
 Phoebe Pritchard - s3780921
 
+
+Yuxuan Jia - s3939744
 ## GitHub Pages URL
 TBD
 
