@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team_Profile</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <div class="item"><a href="./index.html">Home</a> </div>
+            <div class="item"><a href="./Team Profile.html">Team Profile</a> </div>
+            <div class="item"><a href="./Ideal Jobs.html">Ideal Jobs</a></div>
+            <div class="item"><a href="./Tools.html">Tools</a></div>
+            <div class="item"><a href="./Industry Data.html">Industry Data</a></div>
+            <div class="item"><a href="./IT_Work.html">IT Work</a></div>
+            <div class="item"><a href="./IT Technologies.html">IT Technologies</a></div>
+            <div class="item"><a href="./Project Idea.html">Project Idea</a></div>
+            <div class="item"><a href="./References.html">References</a></div>
+        </div>
+    </header>
+
+    <h2>
+        Introduction to
+        IT A2 Team Name -- PBNJ</h2>
+
+    <div class="main">
+        <div class="sort">
+            <div class="sort_title"><a href="./Team Profile.html">Team Profile</a> </div>
+            <div class="sort_title"><a href="./Ideal Jobs.html">Ideal Jobs</a></div>
+            <div class="sort_title"><a href="./Tools.html">Tools</a></div>
+            <div class="sort_title"><a href="./Industry Data.html">Industry Data</a></div>
+            <div class="sort_title"><a href="./IT_Work.html">IT Work</a></div>
+            <div class="sort_title"><a href="./IT Technologies.html">IT Technologies</a></div>
+            <div class="sort_title"><a href="./Project Idea.html">Project Idea</a></div>
+            <div class="sort_title"><a href="./References.html">References</a></div>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+<script>
+    $("a").click(function () {
+        console.log($($(this).attr("href")).offset().top);
+        $("html, body").animate({ scrollTop: $($(this).attr("href")).offset().top - 100 + "px" }, 500);
+
+        return false;
+
+    });
+</script>
+
+</html>
