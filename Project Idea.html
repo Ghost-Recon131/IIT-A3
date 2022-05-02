@@ -230,12 +230,147 @@
 
             <div class="detail_subtitle">Tools and Technologies</div>
             <div class="detail_content">
-
+                There are two options for the organisation when it comes to which tools to use. The program could be
+                deployed on the organisation’s own hardware or servers, entirely on cloud solutions or a mix of both.
+            </div>
+            <div class="detail_subtitle2">Onsite solution</div>
+            <div class="detail_content">
+                Hardware recommendation based off (algorithmia, 2018) and (Ben-Zvi, 2022). When all the hardware is onsite,
+                a minimum of one server setup is needed. The server will run off a data centre style CPU such as AMD’s Epyc
+                line-up, mainly needed for the increased memory channels and PCIe lanes. ECC memory would be optimal, and
+                all the machine learning will be done over multiple GPUs such as the Nvidia A100. The usage logs will be
+                stored on a separate NAS preferably running off SSD’s only, as log files are a few megabytes maximum, when
+                accessing thousands of these, the random reads for small files of SSD’s will save the server a lot of time,
+                rather than have it wait for the data. The CPU will handle turning the log files into cleaned datasets for
+                the Machine learning (ML) model. Preferably there are Uninterrupted power suppls for the NAS and server rack
+                to protect against data loss and corruption during a blackout or brownout. Additional NAS devices offsite to
+                store backup data will also help in event of data loss. If an organisation wants the AI model to be
+                trained sooner, the can then invest in multiple servers.
             </div>
 
+            <div class="detail_subtitle2">Cloud solution</div>
+            <div class="detail_content">
+                (Using AWS as primary example so no need to repeat the same competing products from Microsoft, Google etc)
+                When using cloud computing, things become simpler. A program will be deployed using Elastic Beanstalk, which
+                handles, cleans, and passes the log files as a usable dataset to EC2 G3 instances. These instances will have
+                the ML model use to train the AI. Data will be stored on using a mix of Elastic Block Storage and S3. Network
+                access to configure and control this process will be configured with VPC, direct storage and Route 53. (Qiang Fu, 2022).
+            </div>
+            <div class="detail_content">
+                It is also possible to use a mix of onsite and cloud computing such as offload all computing needs to
+                AWS while keeping all the data for the AI stored locally within the company.
+            </div>
+            <div class="detail_subtitle2">Planned Hybrid solution</div>
+            <div class="detail_content">
+                When deploying to the machine learning applications to AWS, there are two main choices to choose from.
+            </div>
+            <div class="detail_subtitle3">a) AWS SageMaker</div>
+            <div class="detail_content">
+                Sagemaker is designed to so the user does not need to configure their servers for training their machine learning tasks.
+                Just need to provide the dataset and the jupyter notebooks to be hosted (Gallatin, 2021). "SageMaker will handle the
+                creation of preconfigured training instances automatically…" (Anthony Heddings, 2021). However, the main drawback is
+                the SageMaker does not offer Spot Instances, so all training instances are priced as on demand and "cost 40% more"
+                (Anthony Heddings, 2021) compared to the same EC2 instances. This service also tends to be less flexible.
+                Another easier option is to contact Amazon directly and discuss to have a tailored ML solution (AWS, no date).
+            </div>
+            <div class="detail_subtitle3">b) EC2 instances via Elastic Kubernetes Service (EKS) or Elastic Container Service (ECS) </div>
+            <div class="detail_content">
+                Using EC2 instances, it gives us more control over how to deploy the servers and control what services
+                will be installed in them. The drawback is needing to configure the cloud infrastructure and pay as soon
+                as the EC2 instances start, rather than time spent training the ML model. EKS deployment also gives us
+                control of "load balancing or autoscaling" (Gallatin, 2021). This also requires the cloud engineers and
+                data scientist to work together to manage the Kubernetes cluster. ECS removes "some lower-level infrastructure
+                concerns" (Gallatin, 2021), while maintaining flexibility. It offers a good balance between customisation
+                and ease of deployment, which can help the reduce development and future ongoing costs.
+            </div>
+            <div class="detail_subtitle4">The following services are then needed to support EKS / ECS deployment:  </div>
+            <ul>
+                <li> Route 53: Route 53 is a "Domain Name System web service for cloud applications" (Priya Pedamkar, 2019).
+                    This will be used alongside ACM, ALB and VPC to act as a single path of entry to the cloud program,
+                    making it easier to combat DDoS attacks and manage who can and cannot have access to the ML application.
+                    A domain name will need to be purchased from Amazon or another Domain Name Registrar.  </li>
+                <li> Application Load Balancer (ALB) & Elastic load balancer (ELB): ALB is an extension from ELB which
+                    "allows a developer to configure and route incoming end-user traffic to applications based in the AWS
+                    public cloud" (Rahul Awati and Tim Culverhouse, 2021). It will ALB will be used to route the incoming
+                    traffic to the correct port the ML application is running on. Meanwhile, ELB is used to balance the
+                    incoming connections to multiple EC2 instances, to ensure no single one is being overloaded while the
+                    others are idling. It also acts as a second layer of defence against DDoS attacks that made it past Route 53. </li>
+                <li> Amazon Certificate Manager (ACM) and IAM: ACM is used to create and manage the SSL certificates
+                    used to secure the connection to Route 53 with HTTPS (digitalcloud, 2022). Meanwhile, IAM is used to
+                    authenticate the user accessing the ML application.  </li>
+                <li> Virtual Private Cloud (VPC): VPC is used to section off the cloud instances from outside traffic.
+                    It can be configured so only another AWS service can connect to it, thus prevent external connections.
+                    ALB/ELB will be the only allowed service to bridge connections from the outside to the cloud
+                    infrastructure. (Pulkit Dheer, 2021).</li>
+                <li> Amazon S3: Used to store all the log files generated and is prepared to be transferred into database.
+                    Will also store data on completed predations and can be downloaded by ML team to analyse.  </li>
+                <li> •	DynamoDB with DynamoDB Accelerator (DAX): The ML application will use NoSQL database to store all
+                    the cleaned logs. NoSQL is chosen as there will logs from many different types of devices and having
+                    a pre-defined schema will likely complicate the data sorting and cleaning process, with an extra step
+                    to change all logs to a pre-defined type. For large SQL tables, " separate rows would be stored in
+                    separate chunks of physical storage; therefore multiple read operations would be necessary for the
+                    scan of the entire table, which is computationally expensive" (Fiodar Sazanavets, 2019). DynamoDB
+                    Accelerator (DAX) is then used to load parts of the database into memory, speeding up the access
+                    times to the data for the ML instances and prevent them from waiting for data as these instances
+                    will form the bulk of the cloud computing costs.  </li>
+            </ul>
+            <div class="detail_subtitle4">Figure 2: Example of a system architecture diagram of ECS deployment: Brief explanation on program deployment </div>
+            <div class="detail_content">
+                Using this deployment, we can easily scale up or down the training instances needed while keeping costs
+                under control. The same design can then be hosted on different AWS regions to lower latency and keep all
+                data in the client’s country.
+            </div>
+            <img src="images/IDPS system on organisation device.png" alt="Image of leadership styles results" width="374.8" height="323.8">
+
+            <!-- TODO: -->
             <div class="detail_subtitle">Skills Required</div>
             <div class="detail_content">
+                This project is extremely complex to implement and is likely impossible for a single developer to make
+                a useable product in a short period of time. A team of data scientists, cybersecurity experts, team of
+                programmers and cloud engineers will be needed.
+            </div>
+            <div class="detail_subtitle2">Software development team</div>
+            <div class="detail_content">
+                Programming team needs to be able to create bundle of software that this project discuses which contains
+                the separate AI detection modules for endpoints / servers, SDK for developers and software that controls
+                the machine learning process. They will receive input or help directly from cybersecurity experts and data
+                scientists to do this.
+            </div>
+            <div class="detail_content">
+                The software the runs on endpoints and servers will be written in C++, for its speed and ability to have
+                programmer managed memory. The SDK could be built in Spring (Java) or Django (Python) as both are widely
+                used (Cucciniello, 2017). Finally, the software for managing and performing the machine learning process
+                will be built on Python, as it has the largest library of machine learning tools such as sklearn,
+                TensorFlow etc. UX and font end developers will also be needed to create the front end for end users for
+                managing all the software.
+            </div>
+            <div class="detail_subtitle3">Data science team</div>
+            <div class="detail_content">
+                Data scientists will mainly be involved in working with developers to create the data cleaning software,
+                check the prediction and validation results and fine tune the ML model. This can be done by adjusting
+                the learning algorithm and hyperparameter optimisation (Roman, 2021) and (Nantasenamat, 2021).
+            </div>
 
+            <div class="detail_subtitle3">Cybersecurity team</div>
+            <div class="detail_content">
+                Will work with data scientists to and tell them the sort of threats and behaviour the program needs to detect.
+                Then perform black box testing on own software to find areas of weaknesses and patch them. Will also work
+                alongside admin team to determine whether a reported incident is a real threat or a false positive. Also
+                need to work with developers on creating the SDK for other developers.
+            </div>
+
+            <div class="detail_subtitle3">Cloud engineering team</div>
+            <div class="detail_content">
+                Work with developers and data scientists. Responsible for creating and managing all cloud infrastructure
+                used in the project. They will need to decide what AWS services will be used depending on the needs of other teams.
+            </div>
+            <div class="detail_content">
+                Finding the skills and knowledge is easy as stated by (Nguyen et al., 2019) however it will be a costly
+                process as employees in Cybersecurity, software development, Data Science and Cloud engineering are all in
+                demand jobs. Another complication large investment must be obtained before the project can proceed.
+                The hardware required is can also be easily acquired given there is enough funding, as there is no custom
+                or specially made hardware required for this project. Primary costs for this project will be the employed teams,
+                creating the initial ML model as well as incremental updates to the model.
             </div>
 
             <div class="detail_subtitle">Outcome</div>
