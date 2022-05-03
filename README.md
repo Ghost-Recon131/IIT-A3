@@ -17,6 +17,9 @@ Phoebe Pritchard - s3780921
 
 
 Yuxuan Jia - s3939744
-## GitHub Pages URL
-TBD
 
+## GitHub Pages URL
+https://ghost-recon131.github.io/IIT-A2/
+
+## Github Repository URL
+https://github.com/Ghost-Recon131/IIT-A2
