@@ -215,3 +215,26 @@ img{
     color: #409EFF;
     text-shadow: 5px 5px 5px #409EFF;
 }
+
+table {
+  font-family: "Times New Roman";
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+  text-align: left;
+}
+
+pre {
+  font-family: "Times New Roman";
+  white-space: pre-line;
+  text-align: left;
+}
