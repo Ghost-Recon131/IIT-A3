@@ -56,7 +56,7 @@ h2{
 }
 
 .main{
-    width: 80%;
+    width: 60%;
     min-height: 500px;
     margin: 0px auto;
 }
@@ -175,8 +175,7 @@ h2{
     text-decoration: none;
     background: #e0e0e0;
     transition: all 0.4s;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff;
+    box-shadow:  20px 20px 20px #bebebe;
 }
 
 .jump a:hover{
@@ -190,22 +189,29 @@ img{
     display: block;
 }
 
-table {
-  font-family: "Times New Roman";
-  border-collapse: collapse;
-  width: 100%;
+.article_nav{
+    position: fixed;
+    left: 20px;
+    width: 215px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #e0e0e0;
+    box-shadow:  0 0 10px #bebebe;
 }
-td, th {
-  border: 1px solid grey;
-  text-align: left;
-  padding: 8px;
+
+.article_item{
+    display: block;
+    cursor: pointer;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    transition: all 0.4s;
 }
-tr:nth-child(even) {
-  background-color: #dddddd;
-  text-align: left;
-}
-pre {
-  font-family: "Times New Roman";
-  white-space: pre-line;
-  text-align: left;
+
+.article_item:hover{
+    color: #409EFF;
+    text-shadow: 5px 5px 5px #409EFF;
 }
