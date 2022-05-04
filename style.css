@@ -155,6 +155,10 @@ h2{
     width: 90%;
     margin: auto;
     display: flex;
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    right: 0;
     justify-content: space-between;
 }
 
@@ -180,4 +184,8 @@ h2{
     text-shadow: 5px 5px 5px #409EFF;
     box-shadow:  10px 10px 20px #bebebe,
              -10px -10px 20px #ffffff;
+}
+
+img{
+    display: block;
 }
