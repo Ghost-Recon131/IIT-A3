@@ -1,4 +1,4 @@
-# IIT-A2 MON IIT #3
+# IIT-A3 MON Group #3
 
 ## Members
 Daniel Nguyen - s3953534
@@ -19,7 +19,7 @@ Phoebe Pritchard - s3780921
 Yuxuan Jia - s3939744
 
 ## GitHub Pages URL
-https://ghost-recon131.github.io/IIT-A2/
+TBD
 
 ## Github Repository URL
-https://github.com/Ghost-Recon131/IIT-A2
+TBD
