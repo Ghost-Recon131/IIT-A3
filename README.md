@@ -19,7 +19,18 @@ Phoebe Pritchard - s3780921
 Yuxuan Jia - s3939744
 
 ## GitHub Pages URL
-TBD
+https://ghost-recon131.github.io/IIT-A3/
 
-## Github Repository URL
-TBD
+
+## GitHub Repository URL
+https://github.com/Ghost-Recon131/IIT-A3
+
+
+## Admin management software Repo
+https://github.com/Ghost-Recon131/IIT-A3-Admin_Management_Software-Artifact
+
+
+## ML Webapp Repo
+https://github.com/Ghost-Recon131/IIT-A3-ML_Webapp-Artifact
+### Hosted Website at
+https://reactfrontend.s3843790-cc.com/
