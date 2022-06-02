@@ -315,6 +315,155 @@
             to put Flows for the Admin, WebApp and Endpoint sections of the design.
         </div>
 
+        <div class="detail_content">
+            <br></br>
+            Following Figma prototypes, we aim to work on 2-3 other proof-of-concept software. These are the Admin Control
+            Panel software, ML Web Control Panel webapp and possibly a Backend for the ML Webapp. These designs will be
+            based upon our Wireframes and Figma prototype, with some functional features mentioned earlier in the Aims section.
+        </div>
+
+
+        <div class="detail_subtitle">Admin Control Panel Software (JavaFx + Spring Boot)</div>
+        <div class="detail_content">
+            Originally, we planned to use JavaFx with Maven as the dependency manager to create the software. However,
+            we realised that that involves writing 300-400 lines of code dedicated to CRUD (Create / Read / Update / Delete)
+            operations for using a database for persistent storage. Where the database is used to store account logins,
+            notifications, and log files. This resulted in a lot of work with little to show for in terms of functionality
+            and design when an end user looks at our program. It would also mean that if we needed to update the data
+            structures in the future, a lot of refactoring will need to be done on our DAO’s (Data Access Objects) for CRUD tasks.
+
+            <br></br>
+            At this point, we decided to switch to using Spring Boot to speed up development. Originally it is designed
+            to create webapp Backends or microservices (IBM Cloud Education, 2020) but it can speedup our data handling
+            process. In our data class for example Accounts.java, we can annotate it with @Entity, then combine that with
+            a repository interface i.e., AccountsRepository.java then extend JPARepository and annotate the class with
+            @Repository. By performing these steps, Spring Boot will automatically create a table inside a defined SQL
+            Database then have a column for every data variable we have inside the Account class. JPARepository allows
+            for easy CRUD operations as we only need to define methods and its parameters, without having to write the
+            code to search for the data ourselves. This meant that the bulk of the development effort can now be focused
+            on developing the planned features and the user interface, rather than spending time on Data Wrangling.
+
+            <br></br>
+            To create each of the scenes, we use SceneBuilder, a GUI that allows for quick drag and drop placements of
+            JavaFx elements, like text, textfields and buttons. We can then assign FX:ID to manipulate an element within
+            the code or have a button or icon execute code when and it is clicked on.
+
+            <br></br>
+            Initially when developing this software, I used a local MySQL database then I moved it to a RDS instance hosted
+            on AWS. However, the performance was terrible, now each time the database needs to be accessed, there is a
+            noticeable 2-3 second delay where the program appears to free up, when it is just waiting for data to finish
+            transferring from the database. To solve this problem, I rechecked the available instance types on AWS, and
+            it turns out AWS Sydney servers had free tier RDS instances added sometime after I initially setup the RDS
+            instance in US-EAST-1 region, as when I initially checked the Australian region didn’t offer free tier RDS service.
+
+            <br></br>
+            After moving to a Sydney based server and on a higher performance db.t4g.micro instance, compared to the original
+            t2.micro instance. The t4 instance appears to be a new addition to AWS free tier and has 2 VCPU’s and 1GB of ram.
+            Closer server also meant less ping and the combination of the two changes mean that currently there is around
+            a 200-300ms delay when performing database CRUD operations. While not as good as localhost performance,
+            it is much better than before.
+
+            <br></br>
+            Below is the current data flow:
+            <img src="images/Admin%20software%20diagram.png" alt="Dataflow diagram for Admin software" width="626" height="212">
+        </div>
+
+        <div class="detail_subtitle">ML Web App (React Frontend) </div>
+        <div class="detail_content">
+            This Web App artifact is chosen to be done using React it is a good learning opportunity and gives access to
+            lots of nodeJs libraries which can reduce amount of coding needed. Currently, the Frontend is more of a prototype
+            and a basis to start future development work. It is mainly used to familiarise ourselves with Javascript and
+            Cloud Deployment. When all the pages on the webapp is finished, then we will deploy it onto AWS to simulate
+            real development.
+
+            <div class="detail_subtitle2"> Docker, ECR and ECS deployment </div>
+            Normally for a simple frontend deployment, Amazon Elastic Beanstalk would be the easiest way to do so.
+            As we can directly upload a .zip of our code and it will handle provisioning the needed resources, such as
+            EC2 instance, Storage and networking. However, this did not work for me in the past and I kept getting Error
+            500’s and service degraded, despite the code running perfectly fine on localhost.
+
+            <br></br>
+            This time, I decided to avoid any potential problems by Dockerising the React frontend. By using Docker, we
+            can also reduce any “environment sensitive” bugs and issues, where a bug may occur on one setup but not
+            another. Thus, if the Docker image runs locally, then it should work the same when used on a different
+            machine. To Dockerise our program, we need to install Docker, which requires setting up WSL/WSL2 on windows
+            or natively on Linux and MacOS. After that is done, a DockerFile is needed before we can run the docker
+            build command to create our Docker Image. Once the image is created, we will push it to a repository setup
+            in Amazon Elastic Container Registry (ECR). This process is a bit like using git push. From there, we create
+            a Cluster in Amazon Elastic Container Service (ECS). By creating the cluster, we define some details such as
+            the network settings, type of EC2 instance to use and how many instances to deploy. ECS is easier than
+            manually setting up a EC2 instance as it can deploy Docker Images directly to a EC2 instance, rather than
+            manually SSH into an EC2 instance, setup all the needed software, then manually start the Docker Image.
+
+            <br></br>
+            After the cluster is created, we need to make a Task Definition, which includes which docker image to run,
+            RAM and CPU limit settings. Following this process, we can go back to our ECS cluster, then run our created
+            task. This will then start the Docker Image in the EC2 instance within a minute or two. To update our code,
+            we will need to recreate the Docker image on our machine, push it to ECR again, stop the running task on ECS
+            and re-run the task. This will deploy our updated Docker image. At this point, we can customise the Security
+            Group settings to allow external traffic, then use the Public IPv4 DNS to connect to our EC2 instance, such
+            as using:
+            http:// ec2-somename.ap-southeast-2.compute.amazonaws.com:3000.
+
+            <br></br>
+            The image below shows the deployment diagram from code to deployment to EC2 instance:
+            <img src="images/Deployment AWS Architecture Diagram.png" alt="Docker Deployment process" width="811" height="367">
+
+
+            <div class="detail_subtitle2"> Domain Hosting & HTTPS</div>
+            As this project idea is a cybersecurity-based project, it would be quite ironic if we just had non-encrypted
+            http traffic going to our Frontend, especially if this is to be used in the future. Thus, we will secure
+            this website with HTTPS.
+
+            <br></br>
+            To achieve this, I have setup an Application Load Balancer, with listeners on port 80 for http and port 443
+            for https. On the https listener, I need to attach a certificate, which I will do using Amazon Certificate
+            Manager (ACM). In ACM, we need a domain name to the certificate, here I added
+            “reactfrontend.s3843790-cc.com”, then I will need to verify the certificate by adding CNAME values to my
+            Domain. As I have a domain from Route53, I can add the necessary values directly by ticking the values and
+            click add, without going to my Domain management panel.
+
+            <br></br>
+            After the certificate is setup, I will need to setup a target group, this is used to tell the Application
+            Load Balancer which EC2 instance to redirect the traffic to, I will also configure the network port to
+            redirect traffic to, as the Docker image is exposed on port 3000, I will need to use port 3000 here. Now the
+            Application Load Balancer will redirect all network traffic to port 3000 on my specified EC2 instance.
+
+            <br></br>
+            To finish using the registered domain to visit the website, I will need to head to Route53 Hosted Zone menu,
+            then to my Domain, then create Record. The record type will be type A and subdomain is “reactfrontend”, this
+            here needs to match what I entered before to create the SSL certificate. After that I click on the ‘alias’
+            toggle, pick ‘Alias to Application and Classic Load balancer’ then ap-southeast-2 (Sydney) as the region,
+            then the Application load balancer I created for my EC2 instance. Finally, we can create the record and wait
+            a few minutes for the changes to apply. This then completes HTTPS setup, and we can visit the web frontend
+            with encrypted traffic.
+
+            <br></br>
+            Below shows the traffic flow from the user to visiting the cloud resources:
+            <img src="images/Actual AWS Architecture Diagram.png" alt="Traffic flow from user to hosted website" width="827" height="338">
+
+            <div class="detail_subtitle2"> ML Web App (Spring Boot Backend) </div>
+            This final artifact is something we will work on if we have additional time. This will be a backend also written in Spring Boot but used properly as a website backend this time. It will handle all the program logic and receiving / saving or getting data for the frontend. To simplify deployment, this can be deployed as a separate Docker image onto the same Cluster and T2 instance as the website frontend.
+
+            <br></br>
+            For the Frontend to communicate with the Backend, we will use RESTful endpoints in the Backend, such as http://localhost:8080/api/accounts/login
+            The Frontend will then make the relevant request such as POST / GET / PUT / DELETE. This can be done natively in Javascript but we will prefer to use the Axios library as it makes the code neater and is slightly easier to organise the data.
+
+            <div class="detail_subtitle2"> Continuous Integration / Deployment (CI / CD) </div>
+            This final artifact is using Circle CI as well as CodePipeline as our CI / CD workflow. For the Admin software, Circle CI servers to automate the testing and build process. The process will begin by pushing into branch ‘Master’, CircleCI will notice the new commit then run all the unit tests in the project. Once all tests pass, it will try to build the .jar file. However, this did not work, as there were no Oracle Java SDK’s available. At this point, I tried including another image for JavaFx, however this also didn’t work. Thus, it seems it is not possible to get CI / CD working for now unless we created our own Docker image of an Oracle Java 8 SDK.
+
+            <br></br>
+            CircleCI was also added for the ML Webapp, this was successful as all it does at the moment is try to compile the frontend. In the future, test cases for the frontend can be written and Circle CI can then use those for automated testing.
+
+
+            <div class="detail_subtitle3"> AWS CodePipeline </div>
+            I’ve setup a Pipeline on AWS so that every time commits are pushed into Master branch for our ML Webapp repository, it will fetch the changes then build the Docker Image on AWS. Following that, it will automatically tag and push the Docker Image to my ECR then deploy to my ECS cluster and replace the previously running task. This process takes around 4-6 minutes and is faster and easier than the previously mentioned manual process.
+
+            <br></br>
+            Below is the updated deployment structure for our ML Webapp:
+            <img src="images/Deployment with CI-CD AWS Architecture Diagram.png" alt="Traffic flow from user to hosted website" width="1170" height="563">
+        </div>
+
 
         <div class="detail_title" id="Roles">Roles</div>
         <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
