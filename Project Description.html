@@ -651,89 +651,185 @@
 
         <div class="detail_title" id="Tools and Technologies">Tools and Technologies</div>
         <div class="detail_subtitle">Cloud Deployment</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            In this section, we will continue with proposed Cloud Solution made in assignment 2.
+            <br></br>
+
+            Using EC2 instances, it gives us more control over how to deploy the servers and control what services will
+            be installed in them. The drawback is needing to configure the cloud infrastructure and pay as soon as the
+            EC2 instances start, rather than time spent training the ML model. EKS deployment also gives us control of
+            "load balancing or autoscaling" (Gallatin, 2021). This also requires the cloud engineers and data scientist
+            to work together to manage the Kubernetes cluster. ECS removes "some lower-level infrastructure concerns"
+            (Gallatin, 2021), while maintaining flexibility. It offers a good balance between customisation and ease of
+            deployment, which can help to reduce development and future ongoing costs.
+            <ul>
+                <li> Route 53</li>
+                <li> Application Load Balancer (ALB) & Elastic load balancer (ELB)</li>
+                <li> Amazon Certificate Manager (ACM) and IAM</li>
+                <li> Virtual Private Cloud (VPC)</li>
+                <li> Amazon S3</li>
+                <li> DynamoDB with DynamoDB Accelerator (DAX) Tools that</li>
+                <li> EC2 Instances & P3 instances</li>
+            </ul>
+            Example deployment on AWS (Open image in new tab for clearer view):
+            <img src="images/IIT Example AWS Architecture Diagram.png" alt="Example cloud deployment structure" width="677" height="562">
         </div>
-        <br>
+
 
         <div class="detail_subtitle">Software (Artifact) Development</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            <ul>
+                <li> Spring Boot Framework </li>
+                <li> Java & JavaFx </li>
+                <li> React JS library for webapp frontend development </li>
+                <li> React library </li>
+            </ul>
         </div>
-        <br>
 
-        <div class="detail_subtitle">Team member’s Prior experience with tools</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_subtitle">Team member’s Prior experiences with tools</div>
+        <div class="detail_content">
+            <div class="detail_subtitle2">Spring Boot</div>
+            Most team members are new to this framework, as most members have not had Web programming experience. This
+            was used to speed up the Admin Software artifact but is designed to be used as the Backend for websites and
+            webapps.
+
+            <div class="detail_subtitle2">Java & JavaFx</div>
+            Jingxuan was responsible for creating the Admin Webapp as he has prior experience with both the language and
+            frameworks used. Other group members have not used Java & JavaFx before.
+
+            <div class="detail_subtitle2">AWS Services & Management Console</div>
+            Jingxuan is the only group member with prior experience with AWS services and will handle deployment and AWS
+            hosting for our artifacts.
+
+            <div class="detail_subtitle2">React</div>
+            Our team is mostly unfamiliar with the React library and JavaScript in general. We see this as a way to
+            experiment and learn something new.
+
+            <div class="detail_subtitle2">Circle CI & AWS Code Pipeline</div>
+            Jingxuan will create the necessary .yml files and setup for CI / CD. Other group members are not familiar in
+            Dev-Ops related tasks and have not used these two tools before.
         </div>
-        <br>
 
         <div class="detail_title" id="Testing">Testing</div>
         <div class="detail_subtitle">Figma Prototype testing</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            For Figma prototypes, we will perform manual testing. A group member will walk through all scenarios and
+            make sure everything is behaving as expected. We will also ask a few friends to try to use the Figma prototype
+            and see whether our interface design is user-friendly. This testing is simple so only a single group member
+            is needed.
+
+            <br></br>
+            The prototype will be considered done once
+            <ol>
+                <li> Link take the user to the correct scene</li>
+                <li> Design follows Wireframe design, and nothing has been missed</li>
+                <li> Suggestions on improving UI considered and or implemented.</li>
+            </ol>
         </div>
-        <br>
+
 
         <div class="detail_subtitle">Admin Software testing</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            The admin software will be tested manually by team members using the following GWT criterion. This section
+            will involve testing by three team members, as we also want to test that the software works correctly when
+            multiple users are logged in at the same time.
+            Background needed: Java must be installed prior to testing and tester has working internet connection.
+
+            <br></br>
+            Their main goal is to test that
+            <ol>
+                <li> Buttons do what they are planned to do (ie go to next page, show text)</li>
+                <li> All user input is validated, and no input can crash the program</li>
+                <li> Program does not and exit to desktop based on user interaction or user input</li>
+            </ol>
         </div>
-        <br>
+
 
         <div class="detail_subtitle">GWT Criteria for fully functional features</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            <div class="detail_subtitle2"> Feature: Account Registration</div>
+            Given: that I am a new administrator working at the company. And I would like to access the admin control
+            software
+            <br></br>
+            When: I open the software and left click on the “Register” button.
+            <br></br>
+            Then: I fill in the require details, I will be able to return to the Login page by left clicking on the
+            “Back” button.
+            <br></br>
+            Testing Result: Passed, errors shown when required fields are not entered or not entered correctly.
+
+            <div class="detail_subtitle2"> Feature: Login (Incorrect credentials)</div>
+            Given: that want to log into the admin software.
+            <br></br>
+            When: I enter the incorrect username and/or password and left click on “Login”
+            <br></br>
+            Then: I receive an error message stating that my credentials are incorrect. And the software stays on the
+            login page.
+            <br></br>
+            Testing Result: Passed, correctly shows prompt when account does not exist, or incorrect details are
+            entered.
+
+            <div class="detail_subtitle2"> Feature: Login (Success)</div>
+            Given: that I have an account in the admin software system. And my account is not disabled.
+            <br></br>
+            When: I enter my account credentials correctly and left click on “Login”
+            <br></br>
+            Then: I am taken to the Dashboard of the admin software.
+            <br></br>
+            Testing Result: Passed.
+
+            <div class="detail_subtitle2"> Feature: Reset password</div>
+            Given: that I have forgotten my password or want to change m password. And I have an account in the admin
+            software.
+            <br></br>
+            When: I enter all the required details and left click on “Change Password”
+            <br></br>
+            Then: I am given a prompt that the login details have changed. And I will be able to return to the Login
+            page by left clicking on the “Back” button. And I can now login with my new password.
+            <br></br>
+            Testing Result: Passed, errors will show if fields are not entered correctly or is an account doesn’t exist.
+
+            <div class="detail_subtitle2"> Feature: View notifications</div>
+            Given: I have logged into the admin software. And I left click on the “Notifications” button.
+            <br></br>
+            When: I click on the one of the notification ID’s on the left side bar underneath the “Notifications”
+            heading.
+            <br></br>
+            Then: The central “Detailed View” panel shows the relevant information about the notification.
+            <br></br>
+            Testing Result: Passed, different details will show based on the notification.
+            <br></br>
+            Note: The displayed information is loaded from an RDS instance on AWS, due to this instance being on Free
+            Tier, the performance is very slow. The software may appear to be frozen, but this is just the software
+            waiting for the RDS instance to finish the data transfer.
+
+            <div class="detail_subtitle2"> Feature: Mark notification as false positive</div>
+            Given: that I am in the “View Notifications” page. And I have selected a notation to view
+            <br></br>
+            When: I left click on the “Mark as false positive” button.
+            <br></br>
+            Then: The notification is removed from the list of notifications.
+            <br></br>
+            Testing Result: Passed. Changes also saved so if 2 notifications were removed, it will remain that way in
+            subsequent visits to the “View Notifications” page.
+            <br></br>
+            Note: When all 4 notifications are removed, 4 new notifications immediately get generated. This is a due to
+            design implementation to always have some data to view and is not a system bug. The data is dummy data
+            generated in a different Class in the source code.
+
+            <div class="detail_subtitle2"> Feature: Download Log file</div>
+            Given: I have logged into the admin software. And I left click on the “Logs” button.
+            <br></br>
+            When: I left click on the “Export Logs” button
+            <br></br>
+            Then: I am notified of the logs being saved. And the logs will be saved into a file called “FileOutput.csv”
+            at the same directory as the executable file of the admin file.
+            <br></br>
+            Testing Result: Passed and CSV file contains the dummy data that can also be seen in the database.
+            <br></br>
+            Note: This feature also utilises RDS database, hence both opening this page and exporting the logs will feel
+            slow.
         </div>
-        <br>
 
         <div class="detail_subtitle">ML Web App testing</div>
         <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
