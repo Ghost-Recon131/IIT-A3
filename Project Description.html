@@ -440,101 +440,214 @@
 
             <br></br>
             Below shows the traffic flow from the user to visiting the cloud resources:
-            <img src="images/Actual AWS Architecture Diagram.png" alt="Traffic flow from user to hosted website" width="827" height="338">
+            <img src="images/Actual AWS Architecture Diagram.png" alt="Traffic flow from user to hosted website"
+                 width="827" height="338">
 
-            <div class="detail_subtitle2"> ML Web App (Spring Boot Backend) </div>
-            This final artifact is something we will work on if we have additional time. This will be a backend also written in Spring Boot but used properly as a website backend this time. It will handle all the program logic and receiving / saving or getting data for the frontend. To simplify deployment, this can be deployed as a separate Docker image onto the same Cluster and T2 instance as the website frontend.
-
-            <br></br>
-            For the Frontend to communicate with the Backend, we will use RESTful endpoints in the Backend, such as http://localhost:8080/api/accounts/login
-            The Frontend will then make the relevant request such as POST / GET / PUT / DELETE. This can be done natively in Javascript but we will prefer to use the Axios library as it makes the code neater and is slightly easier to organise the data.
-
-            <div class="detail_subtitle2"> Continuous Integration / Deployment (CI / CD) </div>
-            This final artifact is using Circle CI as well as CodePipeline as our CI / CD workflow. For the Admin software, Circle CI servers to automate the testing and build process. The process will begin by pushing into branch ‘Master’, CircleCI will notice the new commit then run all the unit tests in the project. Once all tests pass, it will try to build the .jar file. However, this did not work, as there were no Oracle Java SDK’s available. At this point, I tried including another image for JavaFx, however this also didn’t work. Thus, it seems it is not possible to get CI / CD working for now unless we created our own Docker image of an Oracle Java 8 SDK.
+            <div class="detail_subtitle2"> ML Web App (Spring Boot Backend)</div>
+            This final artifact is something we will work on if we have additional time. This will be a backend also
+            written in Spring Boot but used properly as a website backend this time. It will handle all the program
+            logic and receiving / saving or getting data for the frontend. To simplify deployment, this can be deployed
+            as a separate Docker image onto the same Cluster and T2 instance as the website frontend.
 
             <br></br>
-            CircleCI was also added for the ML Webapp, this was successful as all it does at the moment is try to compile the frontend. In the future, test cases for the frontend can be written and Circle CI can then use those for automated testing.
+            For the Frontend to communicate with the Backend, we will use RESTful endpoints in the Backend, such as
+            http://localhost:8080/api/accounts/login
+            The Frontend will then make the relevant request such as POST / GET / PUT / DELETE. This can be done
+            natively in Javascript but we will prefer to use the Axios library as it makes the code neater and is
+            slightly easier to organise the data.
+
+            <div class="detail_subtitle2"> Continuous Integration / Deployment (CI / CD)</div>
+            This final artifact is using Circle CI as well as CodePipeline as our CI / CD workflow. For the Admin
+            software, Circle CI servers to automate the testing and build process. The process will begin by pushing
+            into branch ‘Master’, CircleCI will notice the new commit then run all the unit tests in the project. Once
+            all tests pass, it will try to build the .jar file. However, this did not work, as there were no Oracle Java
+            SDK’s available. At this point, I tried including another image for JavaFx, however this also didn’t work.
+            Thus, it seems it is not possible to get CI / CD working for now unless we created our own Docker image of
+            an Oracle Java 8 SDK.
+
+            <br></br>
+            CircleCI was also added for the ML Webapp, this was successful as all it does at the moment is try to
+            compile the frontend. In the future, test cases for the frontend can be written and Circle CI can then use
+            those for automated testing.
 
 
-            <div class="detail_subtitle3"> AWS CodePipeline </div>
-            I’ve setup a Pipeline on AWS so that every time commits are pushed into Master branch for our ML Webapp repository, it will fetch the changes then build the Docker Image on AWS. Following that, it will automatically tag and push the Docker Image to my ECR then deploy to my ECS cluster and replace the previously running task. This process takes around 4-6 minutes and is faster and easier than the previously mentioned manual process.
+            <div class="detail_subtitle3"> AWS CodePipeline</div>
+            I’ve setup a Pipeline on AWS so that every time commits are pushed into Master branch for our ML Webapp
+            repository, it will fetch the changes then build the Docker Image on AWS. Following that, it will
+            automatically tag and push the Docker Image to my ECR then deploy to my ECS cluster and replace the
+            previously running task. This process takes around 4-6 minutes and is faster and easier than the previously
+            mentioned manual process.
 
             <br></br>
             Below is the updated deployment structure for our ML Webapp:
-            <img src="images/Deployment with CI-CD AWS Architecture Diagram.png" alt="Traffic flow from user to hosted website" width="1170" height="563">
+            <img src="images/Deployment with CI-CD AWS Architecture Diagram.png" alt="CloudPipeline deployment structure" width="1170" height="563">
         </div>
 
 
         <div class="detail_title" id="Roles">Roles</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            <div class="detail_subtitle"> Praniv – General Tasks</div>
+            <ul>
+                <li> I do not have a specific role, but rather a general one, in which I help in multiple areas like a
+                    jack of all trades
+                </li>
+                <li> I will add to the report, add the report onto our website and work on the front end and user
+                    interference design
+                </li>
+                <li> I will also be ensuring the website is looking up to standard and has all content added and manage
+                    those also working on the group’s website
+                </li>
+            </ul>
+
+            <div class="detail_subtitle"> Jingxuan - Full stack / Lead developer</div>
+            <ul>
+                <li> Full stack developer: Developer who can work in Frontend code and backend code.</li>
+                <li> I have worked on UI and frontend design for the Admin Management software as well as design for the
+                    Website. In the Admin Software, I also created a simple Spring Boot backend that stores Accounts,
+                    Logs and Notifications objects into a MySQL server hosted on AWS.
+                </li>
+                <li> Lead Developer: Help co-ordinate development work and make sure everyone is on the same page. Also
+                    help with coding where necessary.
+                </li>
+                <li> I’ll ensure the wireframes, designs, and product match up and all planned features are working
+                    correctly.
+                </li>
+            </ul>
+
+
+            <div class="detail_subtitle"> Isaac – Front end developer</div>
+            // TODO
+
+
+            <div class="detail_subtitle"> Phoebe – Front-End Design / User Interface Design</div>
+            // TODO
+
+            <div class="detail_subtitle"> Daniel – Front-End Design / User Interface Design</div>
+            <ul>
+                <li> • With prior knowledge to communication design and designing interfaces, I volunteered to assist
+                    with designing the program, working on the wireframe in Lucidchart and Prototype on Figma. I
+                    organised everything to be neat and chose the fonts for the prototype design.
+                </li>
+            </ul>
+
+
+            <div class="detail_subtitle"> Danny – General Tasks</div>
+            // TO COMPLETE
+
         </div>
-        <br>
 
         <div class="detail_title" id="Scope and Limits">Scope and Limits</div>
         <div class="detail_subtitle">Figma Prototype</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            Fully implement the UI for both the Admin Software and the ML Web control panel app. Also ensure that there
+            are scenarios in Figma the reflect different ways a user will use the software. Such as
+            <ol>
+                <li> Admin viewing notification</li>
+                <li> Admin marking notification as false positive</li>
+                <li> Admin downloading logs</li>
+                <li> Admin viewing other pages in software</li>
+                <li> Navbar in ML Web correctly links to other pages.</li>
+            </ol>
+            This is a very simple UI implementation to show what would happen in different scenarios and results from
+            interacting with real software. A maximum of 1 week will be spent on this section, mainly to work out the
+            expected behaviours, needed scenarios and finish the prototype. Following the completing this section, the
+            group will move to implement other planned Artifacts.
         </div>
-        <br>
+
 
         <div class="detail_subtitle">Admin Software</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            This admin software created as a proof-of-concept software but is designed with the ability to be further
+            expanded upon in future development efforts. It should give a good idea to any testers about the
+            functionality it will provide and the current UI designs.
+            <div class="detail_subtitle2">Planned Features</div>
+            <ul>
+                <li> Account registration: registered user is then stored in database</li>
+                <li> Login: verifies user input and credentials against database entries</li>
+                <li> Forgot password: Verifies user identity using secret question & answer to secret question. Then
+                    changes the password.
+                </li>
+                <li> Logout: Takes user back to login screen, must re-enter credentials to regain access</li>
+                <li> View Notifications: Partially implement so that clicking on notifications will show information
+                    about an event.
+                    <ul>
+                        <li> Clicking on “Mark as False Positive” deletes an event from the events list.</li>
+                        <li> Changes are saved / deleted in database so that program remains the same state even after
+                            program restart
+                        </li>
+                    </ul>
+                </li>
+                <li> Export CSV saves actual .csv file to computer using ‘Log’ entries inside the Logs database</li>
+                <li> Buttons will take users to different scenes in the program</li>
+            </ul>
+
+            <div class="detail_subtitle2">Not planned for current submission</div>
+            <ul>
+                <li> Bulk management: Manage client software deployment to devices</li>
+                <li> Logs: Preview shows actual preview</li>
+                <li> Logging software: Implement logging software to collect information on endpoint devices</li>
+                <li> Manage ML Model: View and update the ML model being used by current computers</li>
+            </ul>
         </div>
-        <br>
+
 
         <div class="detail_subtitle">ML Web Control Panel</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            This web control panel is aimed to give the user a feel of what a completed product will look like, as well
+            as rough features that it will include. It can also be used as the base code for future work to take place,
+            as we are using React, the Axios library can be added to make http GET/ POST/ PUT and DELETE requests to a
+            website backend.
+
+            <div class="detail_subtitle2">Planned Features</div>
+            <ul>
+                <li> Site navigation using Navbar</li>
+                <li> Show dummy images / data for all relevant sections on the site</li>
+            </ul>
+
+            <div class="detail_subtitle2">Not planned for current submission</div>
+            <ul>
+                <li> Account login, registration and forgot password: This section requires either a hardcoded set of
+                    values in FrontEnd code or ideally a working Backend. Taking into consideration of everyone’s
+                    workload, it is likely we do not have time to implement a website BackEnd.
+                </li>
+                <li> ML model processing: This section requires extensive knowledge in working with ML based libraries,
+                    as well as gathering enough cleaned data to train a “good” ML Model. Our team does not have the
+                    skills currently.
+                </li>
+                <li> Any AWS services that is part of full webapp deployment, such as S3, DynamoDB, DynamoDB
+                    Accelerator, P3 instances and VPC.
+                </li>
+            </ul>
         </div>
-        <br>
+
+        <div class="detail_subtitle">CI / CD</div>
+        <div class="detail_content">
+            For this artifact, it is more of a learning experience and attempt to speed up testing and deployment.
+            Circle CI will be used to perform automatic testing and builds once commits are pushed into the ‘Master’
+            branch for both the admin software and ML Web app.
+
+            <br></br>
+            CodePipeline is used to speed up the AWS deployment process, by creating the Docker image in the cloud and
+            then automatically pushing it to my ECR, then deploying it to a running ECS cluster. This removes the need
+            to manually Dockerise the frontend, push to ECR then restarting the running task. This whole process can
+            take upwards of 4-6 minutes.
+        </div>
+
 
         <div class="detail_subtitle">Other Limits</div>
-        <div class="detail_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis pretium
-            commodo. Suspendisse interdum, purus non scelerisque consectetur, quam nisl laoreet nibh, a maximus erat
-            libero nec turpis. Donec eget elementum dolor, quis dignissim nulla. Integer vitae sodales lorem. Proin
-            felis massa, tincidunt ut rutrum sed, dignissim ut ipsum. Curabitur neque enim, ultricies ac fermentum ac,
-            lobortis at mi. Ut elementum, elit vel volutpat congue, lacus lacus fringilla erat, a consequat lectus
-            sapien finibus ante. Nullam consectetur malesuada tincidunt. Curabitur sit amet lorem nec felis efficitur
-            vulputate. Donec sit amet ex congue, volutpat lorem non, ullamcorper lacus. Etiam at elementum tortor.
-            Curabitur dictum ante non diam ornare fermentum. Etiam aliquam consequat massa. Pellentesque et ex ornare,
-            ornare lacus sed, lacinia augue. Duis nibh lorem, lacinia nec suscipit at, auctor eget ex. Suspendisse a
-            volutpat purus, sed porttitor justo.
+        <div class="detail_content">
+            <ul>
+                <li> The planned SDK for 3rd party software integration will not be created as an artefact</li>
+                <li> Endpoint software will not be created. As the endpoint software has no user intractable features
+                    and only shows status of the software and protection.
+                </li>
+                <li> Logging software and data cleaning software will not be implemented: This section requires more
+                    research and tools on what type of data to collect, programming libraries or designs to use and
+                    knowledge in Data Science.
+                </li>
+            </ul>
         </div>
-        <br>
+
 
         <div class="detail_title" id="Tools and Technologies">Tools and Technologies</div>
         <div class="detail_subtitle">Cloud Deployment</div>
